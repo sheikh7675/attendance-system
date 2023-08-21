@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +22,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
+Route::get('/check-in', [AttendanceController::class, 'checkIn'])->name('checkin');
+Route::get('/check-out', [AttendanceController::class, 'checkOut'])->name('checkout');
+Route::get('/edit/{id}', [AttendanceController::class, 'edit'])->name('edit');
+Route::post('/update/{id}', [AttendanceController::class, 'update'])->name('update');
+Route::get('/delete/{id}', [AttendanceController::class, 'delete'])->name('delete');
